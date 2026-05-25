@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Robótica - Esteban Bobadilla</title>
+    
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+            --soft-bg: #f4f7f6;
+            --dark-text: #1a1a1a;
+            --light-text: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset y Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            background-color: var(--soft-bg); 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header { 
+            background-color: rgb(179, 179, 179); 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-year {
+            background: var(--dark-text);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .neon-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 1px 6px 15px rgba(188, 19, 254, 0.4), 2px 6px 150px rgba(188, 19, 254, 0.2);
+        }
+
+        .subtitle {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        /* Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Card Styles */
+        .card { 
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                flex-direction: row;
+                min-height: 280px;
+                height: auto;
+            }
+        }
+
+        .card:hover { 
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .img-container {
+            flex: 1;
+            min-height: 250px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            flex: 1.5;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .semana-tag {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            color: var(--neon-purple);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Contenedor Desplegable */
+        .expandable {
+            cursor: pointer;
+            flex-wrap: wrap;
+        }
+
+        .extra-content {
+            display: none;
+            width: 100%;
+            background: #000; /* Fondo negro para que el video luzca mejor */
+            border-top: 2px solid var(--neon-purple);
+            height: 600px; 
+            animation: fadeIn 0.4s ease;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .category-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--light-text);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-top: 60px;
+            background-color: #9266666a;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-logo {
+            max-height: 55px;
+            transition: transform 0.4s ease;
+        }
+
+        .footer-logo:hover { transform: scale(1.25); }
+
+        .copy-text { color: var(--light-text); font-size: 0.9rem; }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <h3 class="mb-0">🤖 Bitácora Esteban</h3>
+        <div class="badge-year">Robótica 2026</div>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero-section">
+        <h1 class="neon-title">Registro de Proyectos</h1>
+        <p class="subtitle">Documentación técnica de evolución semanal</p>
+    </section>
+
+    <div class="project-grid">
+        
+        <article class="card expandable" onclick="toggleContent('pdf-container')">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800" alt="Arduino Board">
+            </div>
+            <div class="card-body">
+                <span class="semana-tag">Semana 01</span>
+                <h2 class="card-title">Introducción a Arduino</h2>
+                <p class="card-text">En esta semana identifiqué las partes de un Arduino</p>
+                <div class="category-badge">Documentación PDF</div>
+            </div>
+
+            <div id="pdf-container" class="extra-content">
+                <embed src="Recursos/Introducción Arduino.pdf" type="application/pdf" class="pdf-viewer" />
+            </div>
+        </article>
+
+        <article class="card expandable" onclick="toggleContent('video-container')">
+            <div class="img-container">
+                <img src="data:image/webp;base64,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" alt="Semana 2">
+            </div>
+            <div class="card-body">
+                <span class="semana-tag">Semana 02</span>
+                <h2 class="card-title">Simulación de circuito</h2>
+                <p class="card-text">Creación de una simulación en tinkercad para encender LEDS.</p>
+                <div class="category-badge">Video Demostrativo</div>
+            </div>
+
+            <div id="video-container" class="extra-content">
+                <video controls class="pdf-viewer">
+                    <source src="Recursos/video ev semana 2.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=600" alt="Semana 3">
+            </div>
+            <div class="card-body">
+                <span class="semana-tag">Semana 03</span>
+                <h2 class="card-title">Integración Sensorial</h2>
+                <p class="card-text">Conexión de sensores ultrasónicos y de infrarrojos en tiempo real.</p>
+                <div class="category-badge">Sensores</div>
+            </div>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <p class="copy-text">&copy; 2026 Esteban Bobadilla</p>
+        <img src="https://www.capouilliez.edu.gt/panel-alumnos/assets/img/brand/capouilliez.svg" class="footer-logo" alt="Colegio Capouilliez">
+        <p class="copy-text">Curso de Robótica</p>
+    </div>
+</footer>
+
+<script>
+    // Función genérica para abrir y cerrar contenedores (PDF o Video)
+    function toggleContent(id) {
+        var container = document.getElementById(id);
+        
+        if (container.style.display === "block") {
+            container.style.display = "none";
+            
+            // Si es un video, pausarlo automáticamente al cerrar la pestaña
+            var video = container.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        } else {
+            container.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
