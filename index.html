@@ -286,7 +286,54 @@
                 </video>
             </div>
         </article>
-        </div>
+
+        <article class="card expandable" onclick="toggleContent('video-container-4')">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600" alt="Semana 4">
+            </div>
+            <div class="card-body">
+                <span class="semana-tag">Semana 04</span>
+                <h2 class="card-title">Título de tu Proyecto 4</h2>
+                <p class="card-text">Descripción de lo que lograste en la semana 4 de robótica.</p>
+                <div class="category-badge">Videos Demostrativos</div>
+            </div>
+
+            <div id="video-container-4" class="extra-content" style="height: auto; padding: 20px;">
+                <video controls style="width: 100%; max-height: 400px; margin-bottom: 20px;">
+                    <source src="nombre_del_video1_sem4.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                <video controls style="width: 100%; max-height: 400px;">
+                    <source src="nombre_del_video2_sem4.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+        </article>
+
+        <article class="card expandable" onclick="toggleContent('video-container-5')">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=600" alt="Semana 5">
+            </div>
+            <div class="card-body">
+                <span class="semana-tag">Semana 05</span>
+                <h2 class="card-title">Título de tu Proyecto 5</h2>
+                <p class="card-text">Descripción de lo que lograste en la semana 5 de robótica.</p>
+                <div class="category-badge">Videos Demostrativos</div>
+            </div>
+
+            <div id="video-container-5" class="extra-content" style="height: auto; padding: 20px;">
+                <video controls style="width: 100%; max-height: 400px; margin-bottom: 20px;">
+                    <source src="nombre_del_video1_sem5.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                <video controls style="width: 100%; max-height: 400px;">
+                    <source src="nombre_del_video2_sem5.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+        </article>
+
+    </div>
 </main>
 
 <footer>
@@ -305,11 +352,12 @@
         if (container.style.display === "block") {
             container.style.display = "none";
             
-            // Si es un video, pausarlo automáticamente al cerrar la pestaña
-            var video = container.querySelector('video');
-            if (video) {
-                video.pause();
-            }
+            // Pausar todos los videos que estén dentro del contenedor al cerrarlo
+            var videos = container.querySelectorAll('video');
+            videos.forEach(function(vid) {
+                vid.pause();
+            });
+            
         } else {
             container.style.display = "block";
         }
